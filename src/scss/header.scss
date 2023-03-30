@@ -1,0 +1,182 @@
+//====================================================================================================
+.header {
+
+	// .header__container
+
+	&__container {
+		height: 121px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		column-gap: 20px;
+
+		@media(max-width:1100px) {
+			height: 100px;
+		}
+
+		@media(max-width:850px) {
+			column-gap: 15px;
+		}
+
+		@media(max-width:768px) {
+			height: 70px;
+		}
+
+		// .header__container_wide
+
+		&_wide {}
+	}
+
+	// .header__logo
+
+	&__logo {
+		flex: 0 1 300px;
+		font-family: 'Cormorant Upright';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 44px;
+		line-height: 130%;
+		text-align: center;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: #FFFFFF;
+
+		@media(max-width:1100px) {
+			flex: 0 1 180px;
+			font-size: 38px;
+		}
+	}
+
+	// .header__menu
+
+	&__menu {}
+
+	// .header__registration
+
+	&__registration {}
+}
+
+.menu {
+	@media(max-width:768px) {
+		display: none;
+	}
+
+	// .menu__item
+
+	&__item {
+		display: flex;
+		flex-wrap: wrap;
+		flex: 0 0 auto;
+		column-gap: 32px;
+		row-gap: 10px;
+
+		@media(max-width:1100px) {
+			column-gap: 22px;
+		}
+
+		@media(max-width:850px) {
+			column-gap: 15px;
+		}
+	}
+
+	// .menu__list
+
+	&__list {}
+}
+
+.link {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 175%;
+	letter-spacing: 0.04em;
+}
+
+.registration {
+	display: flex;
+	flex: 0 1 300px;
+	column-gap: 35px;
+	row-gap: 10px;
+	align-items: center;
+	justify-content: flex-end;
+
+	@media(max-width:1100px) {
+		flex-direction: column;
+		flex: 0 1 180px;
+	}
+
+	@media(max-width:425px) {
+		display: none;
+	}
+
+	img {
+
+		@media(max-width:1100px) {
+			display: none;
+		}
+	}
+
+	// .registration__login
+
+	&__login {}
+
+	// .registration__book-table
+
+	&__book-table {}
+}
+
+//====================================================================================================
+
+//Burger
+
+.icon-menu {
+	display: none;
+
+	@media (max-width: 768px) {
+		display: block;
+		position: relative;
+		width: 30px;
+		height: 18px;
+		cursor: pointer;
+		z-index: 5;
+
+		span,
+		&::before,
+		&::after {
+			content: "";
+			transition: all 0.3s ease 0s;
+			left: 0px;
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background-color: #FFFFFF;
+		}
+
+		&::before {
+			top: 0px;
+		}
+
+		&::after {
+			bottom: 0px;
+		}
+
+		span {
+			top: calc(50% - 1px);
+		}
+
+		.menu-open & {
+			span {
+				transform: scale(0);
+			}
+
+			&::before {
+				transform: rotate(-45deg);
+				top: calc(50% - 1px);
+			}
+
+			&::after {
+				transform: rotate(45deg);
+				bottom: calc(50% - 1px);
+			}
+		}
+	}
+}
