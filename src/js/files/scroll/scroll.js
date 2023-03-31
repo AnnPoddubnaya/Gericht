@@ -1,15 +1,20 @@
-// Подключение функционала "Чертогов Фрилансера"
-import { isMobile, getHash } from "../functions.js";
+// Импорт функционала ====================================================================================================================================================================================================================================================================================================
+// Вспомогательные функции.
+import { isMobile } from "../functions.js";
 // Импорт класса наблюдателя.
 import { ScrollWatcher } from "../../libs/watcher.js";
-// Модуль прокрутки к блоку
+// Модуль прокрутки к блоку (раскомментировать при использовании).
 import { gotoBlock } from "./gotoblock.js";
 // Переменная контроля добавления события window scroll.
 let addWindowScrollEvent = false;
 //====================================================================================================================================================================================================================================================================================================
-// Наблюдатель
-export function scrollWatcher() {
-	new ScrollWatcher({});
+// Запуск наблюдателя
+// Создание дополнительной обработки элемента
+// Требует импорта ScrollWatcher
+export function scrollWatcher(logging = false) {
+	new ScrollWatcher({
+		logging: logging
+	});
 }
 // Плавная навигация по странице
 export function pageNavigation() {
@@ -26,10 +31,9 @@ export function pageNavigation() {
 			const targetElement = e.target;
 			if (targetElement.closest('[data-goto]')) {
 				const gotoLink = targetElement.closest('[data-goto]');
-				const gotoLinkSelector = gotoLink.dataset.goto ? gotoLink.dataset.goto : '';
 				const noHeader = gotoLink.hasAttribute('data-goto-header') ? true : false;
 				const gotoSpeed = gotoLink.dataset.gotoSpeed ? gotoLink.dataset.gotoSpeed : '500';
-				gotoBlock(gotoLinkSelector, noHeader, gotoSpeed);
+				gotoBlock(`#${gotoLink.dataset.goto}`, noHeader, gotoSpeed);
 				e.preventDefault();
 			}
 		} else if (e.type === "watcherCallback") {
@@ -102,9 +106,9 @@ export function stickyBlock() {
 		if (stickyParents.length) {
 			stickyParents.forEach(stickyParent => {
 				let stickyConfig = {
-					top: stickyParent.dataset.stickyTop ? parseInt(stickyParent.dataset.stickyTop) : 0,
-					bottom: stickyParent.dataset.stickyBottom ? parseInt(stickyParent.dataset.stickyBottom) : 0,
-					header: stickyParent.hasAttribute('data-sticky-header') ? document.querySelector('header.header').offsetHeight : 0
+					top: stickyParent.dataset.stickyTop ? stickyParent.dataset.stickyTop : 0,
+					bottom: stickyParent.dataset.stickyBottom ? stickyParent.dataset.stickyBottom : 0,
+					header: stickyParent.hasAttribute('data-sticky-header')
 				}
 				stickyBlockItem(stickyParent, stickyConfig);
 			});
@@ -112,10 +116,10 @@ export function stickyBlock() {
 	}
 	function stickyBlockItem(stickyParent, stickyConfig) {
 		const stickyBlockItem = stickyParent.querySelector('[data-sticky-item]');
-		const headerHeight = stickyConfig.header;
+		const headerHeight = stickyConfig.header ? document.querySelector('header.header').offsetHeight : 0;
 		const offsetTop = headerHeight + stickyConfig.top;
-		const startPoint = stickyBlockItem.getBoundingClientRect().top + scrollY - offsetTop;
 		document.addEventListener("windowScroll", function (e) {
+			const startPoint = stickyBlockItem.getBoundingClientRect().top + scrollY - offsetTop;
 			const endPoint = (stickyParent.offsetHeight + stickyParent.getBoundingClientRect().top + scrollY) - (offsetTop + stickyBlockItem.offsetHeight + stickyConfig.bottom);
 			let stickyItemValues = {
 				position: "relative",
