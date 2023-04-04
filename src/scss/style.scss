@@ -6,6 +6,7 @@
 // Подключение шрифтов ===========================================================================================================================================================================================================================================================================
 //&display=swap - добавить при подключении через плагин
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:regular,600,italic&display=swap");
+// @import url("https://fonts.googleapis.com/css?family=Cormorant+Upright:regular,600,700&display=swap");
 @import "base/fonts";
 
 // Подключение иконочных шрифтов ==============================================================================================================================================================================================================================================================================
@@ -53,6 +54,7 @@ $mobileSmall: em(479.98); // Телефоны S
 body {
 	color: $mainColor;
 	background-color: $mainDark;
+
 	// Скролл заблокирован
 	.lock & {
 		overflow: hidden;
@@ -66,17 +68,19 @@ body {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+
 	// Сайт загружен
-	.loaded & {
-	}
+	.loaded & {}
+
 	// Прижимаем footer
-	> main {
+	>main {
 		position: relative;
 		z-index: 2;
 		flex: 1 1 auto;
 	}
+
 	// Фикс для слайдеров
-	> * {
+	>* {
 		min-width: 0;
 	}
 }
@@ -90,6 +94,7 @@ body {
 Снипет (HTML): cnt
 */
 @if ($responsiveType==1) {
+
 	// Отзывчивая
 	[class*="__container"] {
 		@if ($maxWidthContainer>0) {
@@ -97,33 +102,45 @@ body {
 			box-sizing: content-box;
 			margin: 0 auto;
 		}
+
 		@if ($containerPadding>0) {
 			padding: 0 rem(math.div($containerPadding, 2));
 		}
 	}
+
 	[class*="__container_wide"] {
 		max-width: rem(1680);
 	}
-} @else {
+}
+
+@else {
+
 	// По брейк-поинтам
 	[class*="__container"] {
 		margin: 0 auto;
+
 		@if ($maxWidthContainer>0) {
 			max-width: rem($maxWidthContainer);
 			box-sizing: content-box;
-		} @else {
+		}
+
+		@else {
 			@if ($containerPadding>0) {
 				padding: 0 rem(math.div($containerPadding, 2));
 			}
 		}
+
 		@media (max-width: $pc) {
 			max-width: rem(970);
 		}
+
 		@media (max-width: $tablet) {
 			max-width: rem(750);
 		}
+
 		@media (max-width: $mobile) {
 			max-width: none;
+
 			@if ($containerPadding>0 and $maxWidthContainer>0) {
 				padding: 0 rem(math.div($containerPadding, 2));
 			}
