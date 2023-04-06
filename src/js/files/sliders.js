@@ -60,7 +60,7 @@ function initSliders() {
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
-			//autoHeight: true,
+			// autoHeight: false,
 			speed: 800,
 			//touchRatio: 0,
 			//simulateTouch: false,
@@ -81,27 +81,15 @@ function initSliders() {
 				prevEl: '.about__more .more__item_prev',
 			},
 			*/
-			/*
-			breakpoints: {
-				320: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
-				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 20,
-				},
-				992: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				1268: {
-					slidesPerView: 4,
-					spaceBetween: 30,
-				},
-			},
-			*/
+			// breakpoints: {
+			// 	320: {
+			// 		autoHeight: true,
+			// 	},
+			// 	992: {
+			// 		autoHeight: false,
+			// 	},
+
+			// },
 			on: {
 				init: function () {
 					const controlls = document.querySelectorAll('.body-main-slider__controll .swiper-pagination-bullet');
@@ -154,5 +142,5 @@ window.addEventListener("load", function (e) {
 	// Запуск инициализации слайдеров
 	initSliders();
 	// Запуск инициализации скролла на базе слайдера (по классу swiper_scroll)
-	//initSlidersScroll();
+	initSlidersScroll();
 });
