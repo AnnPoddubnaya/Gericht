@@ -6,7 +6,7 @@
 // @import "base/spollers";
 
 // Стили попапов
-// @import "base/popup";
+@import "base/popup";
 
 // Стили табов
 // @import "base/tabs";
@@ -17,6 +17,9 @@
 // Стили блока "показать еще"
 // @import "base/showmore";
 
+// Календарь
+@import "libs/datepicker";
+
 // Стили для полноэкранного блока
 @import "base/fullscreen";
 
@@ -25,7 +28,6 @@
 // Сниппет (HTML): ibga (a c картинкой и классами)
 [class*="-ibg"] {
 	position: relative;
-
 	img {
 		position: absolute;
 		width: 100%;
@@ -35,7 +37,6 @@
 		object-fit: cover;
 	}
 }
-
 [class*="-ibg_contain"] {
 	img {
 		object-fit: contain;
@@ -50,10 +51,8 @@
 %listCounter {
 	list-style-type: none;
 	counter-reset: item;
-
 	li {
 		position: relative;
-
 		&:before {
 			counter-increment: item;
 			content: counter(item);
@@ -63,14 +62,12 @@
 		}
 	}
 }
-
 // Адаптивное видео
 %responsiveVideo {
 	position: relative;
 	overflow: hidden;
 	height: 0;
 	padding-bottom: 56.25%;
-
 	video,
 	iframe,
 	object,
@@ -82,10 +79,8 @@
 		height: 100%;
 	}
 }
-
 // Видео в качестве фона
 %videoBackground {
-
 	video,
 	iframe,
 	object,
@@ -102,42 +97,34 @@
 		background-size: cover;
 	}
 }
-
 // Серый фильтр
 %grayfilter {
 	transition: all 0.3s ease 0s;
 	filter: grayscale(1);
-
 	@media (any-hover: hover) {
 		&:hover {
-			filter: grayscale(0);
+			//filter: grayscale(0);
 		}
 	}
 }
-
 // Отменить выделение
 %noselect {
 	user-select: none;
 }
-
 // Зеркальное отображение
 %mirror {
 	transform: scale(-1, 1);
 }
-
 // Плавный скролл
 %smoothscroll {
 	-webkit-overflow-scrolling: touch;
 }
-
 // Скрыть скролл
 %hidescroll {
 	&::-webkit-scrollbar {
 		display: none;
 	}
 }
-
 %cuf {
-
 	font-family: CormorantUpright;
 }
